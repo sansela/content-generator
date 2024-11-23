@@ -19,7 +19,7 @@ const MARKDOWN_CONFIG = {
             lineHeight: 1.2,
             background: {
                 color: '#FFFF40',
-                opacity: 0.8
+                opacity: 1
             }
         },
         content: {
@@ -66,14 +66,15 @@ const MARKDOWN_CONFIG = {
             padding: {
                 top: 80,
                 bottom: 80,
-                left: 150,
-                right: 100
+                left: 100,
+                right: 50
             },
             spacing: {
                 bulletLineHeight: 45,
                 bulletGroupSpacing: 50,
                 headingBottomMargin: 60,
-                numberTextGap: 15
+                numberTextGap: 15,
+                paragraphLineHeight: 60
             },
             bullets: {
                 radius: 4,

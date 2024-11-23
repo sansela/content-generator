@@ -1,0 +1,7 @@
+Generate a multi-slide Instagram carousel content with the following structure:
+- Main page: title, highlighted words, description (same as title), page number, brand handle (@key4success__), swipe instruction ("Swipe Left 👉")
+- SubPages: 
+  - Numbered bullet points (2 or 3, max 30 words each) starting from 1 and continuing across pages.
+  - Each subpage has the same description as the main page.
+  - Page number, brand handle (@key4success__), swipe instruction ("Swipe Left 👉") for each subpage.
+- Thank you page and promotion page: both with no content for now.

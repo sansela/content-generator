@@ -1,0 +1,36 @@
+Generate markdown content for "How to Change Your Life in 90 Days":
+
+Use # for titles and ## for numbered subtitles.
+Include bullet points for key ideas, with brief explanations where needed.
+Keep content direct, engaging, and suitable for formats like Instagram slides.
+Use emojis if relevant.
+Final output in JSON format:
+json
+Copy code
+{
+    "templateName": "multiSlideMarkDownText",
+    "templateData": {
+        "mainPageMarkDown": {
+            "markDownTitle": "",
+            "highlightedWords": [""],
+            "brandHandle": "@key4success__",
+            "swipeInstruction": "(Swipe Left 👉)"
+        },
+        "subPagesMarkDown": [
+            {
+                "content": "## [Subtitle]\n- [Key point 1]\n- [Key point 2]\n\n[Explanation]"
+            }
+        ],
+        "thankYouPage": {
+            "imageUrl": ""
+        },
+        "promotionPage": {
+            "imageUrl": ""
+        }
+    }
+}
+Requirements:
+
+Bullet points for clarity.
+Short, direct paragraphs.
+Focus on main ideas with no complex formatting or images.

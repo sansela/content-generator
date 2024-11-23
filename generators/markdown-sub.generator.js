@@ -12,14 +12,14 @@ async function generateMarkdownSubPage(subPageData, outputPath, pageNumber, tota
         const lines = [];
         let currentLine = words[0];
 
-        const getTextWidth = (text) => text.length * (fonts.content.size * 0.35);
+        const getTextWidth = (text) => text.length * (fonts.content.size * 0.45);
 
         for (let i = 1; i < words.length; i++) {
             const word = words[i];
             const testLine = currentLine + ' ' + word;
             const lineWidth = getTextWidth(testLine);
 
-            if (lineWidth < maxWidth - 100) {
+            if (lineWidth < maxWidth) {
                 currentLine = testLine;
             } else {
                 lines.push(currentLine);
@@ -33,7 +33,7 @@ async function generateMarkdownSubPage(subPageData, outputPath, pageNumber, tota
     const lines = subPageData.content.split('\n').filter(line => line.trim());
     let processedLines = [];
 
-    const maxTextWidth = width - padding.left - padding.right;
+    const maxTextWidth = width - (padding.left + padding.right + 100);
 
     lines.forEach(line => {
         const trimmedLine = line.trim();
@@ -87,10 +87,11 @@ async function generateMarkdownSubPage(subPageData, outputPath, pageNumber, tota
     try {
         processedLines.forEach((line, index) => {
             if (line.type === 'h2') {
+                const headingText = line.text.replace(/^[\d.]+\s*/, ''); // Remove any leading numbers
                 svgContent += `
                     <rect x="${padding.left - 10}" 
                           y="${yPosition - fonts.h2.size + 10}" 
-                          width="${line.text.length * fonts.h2.size * 0.6 + 20}" 
+                          width="${headingText.length * fonts.h2.size * 0.6 + 20}" 
                           height="${fonts.h2.size + 10}" 
                           fill="${fonts.h2.background.color}" 
                           opacity="${fonts.h2.background.opacity}"/>
@@ -99,7 +100,7 @@ async function generateMarkdownSubPage(subPageData, outputPath, pageNumber, tota
                           font-family="${fonts.h2.family}"
                           font-size="${fonts.h2.size}px"
                           font-weight="${fonts.h2.weight}"
-                          fill="${fonts.h2.color}">${line.text}</text>`;
+                          fill="${fonts.h2.color}">${headingText}</text>`;
                 yPosition += fonts.h2.size + spacing.headingBottomMargin;
             } else if (line.type === 'numbered') {
                 svgContent += `
@@ -157,27 +158,14 @@ async function generateMarkdownSubPage(subPageData, outputPath, pageNumber, tota
                     yPosition += spacing.bulletGroupSpacing;
                 }
             } else if (line.type === 'paragraph') {
-                line.wrappedLines.forEach((wrappedLine, lineIndex) => {
+                line.wrappedLines.forEach((wrappedLine) => {
                     svgContent += `
                         <text x="${padding.left}" 
                               y="${yPosition}" 
                               font-family="${fonts.content.family}"
                               font-size="${fonts.content.size}px"
-                              fill="${fonts.content.color}"
-                              style="font-variant-emoji: emoji">`;
-                    
-                    const parts = wrappedLine.split(/(\*\*.*?\*\*)/g);
-                    parts.forEach(part => {
-                        if (part.startsWith('**') && part.endsWith('**')) {
-                            const boldText = part.slice(2, -2);
-                            svgContent += `<tspan font-weight="bold">${boldText}</tspan>`;
-                        } else {
-                            svgContent += `<tspan>${part}</tspan>`;
-                        }
-                    });
-                    
-                    svgContent += `</text>`;
-                    yPosition += spacing.bulletLineHeight;
+                              fill="${fonts.content.color}">${wrappedLine}</text>`;
+                    yPosition += 70;
                 });
 
                 if (index < processedLines.length - 1) {
