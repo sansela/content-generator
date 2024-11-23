@@ -7,7 +7,7 @@ const INSTAGRAM_CONFIG = {
     title: {
       family: 'Arial',
       size: 100,
-      color: 'red',
+      color: 'black',
       weight: 900,
       lineHeight: 1.6
     },

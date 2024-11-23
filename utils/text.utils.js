@@ -1,23 +1,22 @@
-function calculateTextDimensions(text, fontSize) {
-    const approxWidth = text.length * fontSize * 0.6;
+function calculateTextDimensions(text, font) {
+    const avgCharWidth = font.size * 0.6;
     return {
-        width: approxWidth,
-        height: fontSize
+        width: text.length * avgCharWidth,
+        height: font.size
     };
 }
 
-function wrapText(text, maxWidth, fontSize) {
+function wrapText(text, maxWidth, font) {
     const words = text.split(' ');
     const lines = [];
     let currentLine = words[0];
     
     for (let i = 1; i < words.length; i++) {
         const word = words[i];
-        const testLine = currentLine + ' ' + word;
-        const testWidth = calculateTextDimensions(testLine, fontSize).width;
+        const width = calculateTextDimensions(currentLine + ' ' + word, font).width;
         
-        if (testWidth < maxWidth) {
-            currentLine = testLine;
+        if (width < maxWidth) {
+            currentLine += ' ' + word;
         } else {
             lines.push(currentLine);
             currentLine = word;

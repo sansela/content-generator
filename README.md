@@ -1,3 +1,1 @@
-# create .env file
-PORT=
-JWT_SECRET=
+## Breaking Bad Habits\n1. **Make it invisible**: Remove triggers.\n2. **Make it unattractive**: Reframe mindset.\n3. **Make it difficult**: Add friction.\n4. **Make it unsatisfying**: Add consequences.
